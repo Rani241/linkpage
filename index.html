@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RJ Link Page</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <button id="toggle-mode">🌙</button>
+
+  <div class="container">
+    <div class="logo">RJ</div>
+    <p class="description">Find me everywhere on this link page!✨</p>
+    
+    <div class="links">
+      <a href="https://www.linkedin.com/in/rani-jaselia-b353b4322/" class="button" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Rani241" class="button" target="_blank">Github</a>
+      <a href="https://open.spotify.com/user/dne9jf0nxey0lnwbgyjn8qo5n?si=5t0_ulk1SBi7-nM3D8V_5Q" class="button" target="_blank">Spotify</a>
+      <a href="https://rani241.github.io/Web-Profil/" class="button" target="_blank">Portofolio</a>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-mode');
+    const body = document.body;
+
+    if (localStorage.getItem('mode') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.onclick = () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('mode', isDark ? 'dark' : 'light');
+    };
+  </script>
+</body>
+</html>

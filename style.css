@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0.6px 0.6px 1px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+}
+
+#toggle-mode {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+:root {
+  --bg: linear-gradient(135deg, #a6c1ee, #fbc2eb, #a6c1ee);
+  --card-bg: #ffffffcc;
+  --text-color: #333;
+  --logo-bg: #f9f9f9;
+  --button-bg: linear-gradient(to right, #a6c1ee, #fca0b7);
+  --button-hover: linear-gradient(to right, #ff758c, #ff7eb3);
+  --sparkle: rgba(255, 154, 158, 0.5);
+}
+
+body.dark {
+  --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  --card-bg: #1c1c1ecc;
+  --text-color: #f0f0f0;
+  --logo-bg: #2a2a2a;
+  --button-bg: linear-gradient(to right, #ff6a88, #ff99ac);
+  --button-hover: linear-gradient(to right, #ff4081, #ff80ab);
+  --sparkle: rgba(255, 106, 136, 0.5);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--sparkle),
+    var(--sparkle) 1px,
+    transparent 2px,
+    transparent 15px
+  );
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.2;
+}
+
+.container {
+  background-color: var(--card-bg);
+  padding: 50px 30px;
+  border-radius: 24px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  backdrop-filter: blur(12px);
+  color: var(--text-color);
+  animation: fadeInUp 0.8s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  border: 4px solid var(--text-color);
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: 700;
+  background-color: var(--logo-bg);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo:hover {
+  transform: scale(1.05) rotate(4deg);
+}
+
+.description {
+  margin-bottom: 30px;
+  font-size: 17px;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.links .button {
+  display: block;
+  background: var(--button-bg);
+  color: #fff;
+  text-decoration: none;
+  margin: 14px auto;
+  padding: 14px;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 6px 15px var(--sparkle);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.links .button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px var(--sparkle);
+  background: var(--button-hover);
+}
+
+.links .button::after {
+  content: "✨";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.links .button:hover::after {
+  opacity: 1;
+}
+
+.links .button:hover::before {
+  content: attr(href);
+  position: absolute;
+  left: 50%;
+  bottom: 120%;
+  transform: translateX(-50%);
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0.95;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 35px 20px;
+    border-radius: 16px;
+    width: 90%;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+  }
+
+  .description {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .links .button {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  #toggle-mode {
+    font-size: 22px;
+    top: 15px;
+    right: 15px;
+  }
+}
